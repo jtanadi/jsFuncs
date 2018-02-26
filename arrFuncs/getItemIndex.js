@@ -1,20 +1,20 @@
-const getItemIndex = function (inputArr, itemToFind, useRegex) {
+const getItemIndex = function (inputArr, itemToIndex, useRegex) {
   /* (arr, str or regex obj[, bool]) -> arr of nums
 
   Looks through input array and logs the index number(s)
-  of the passed-in element. 
-  If useRegex is true, the function will treat itemToFind as 
+  of itemToIndex. 
+  If useRegex is true, the function will treat itemToIndex as 
   an expression. useRegex is false by default.
   */
   useRegex = useRegex || false;
   let exp;
 
   if(useRegex) {
-    if(typeof itemToFind === "string") {
-      exp = new RegExp(itemToFind);
+    if(typeof itemToIndex === "string") {
+      exp = new RegExp(itemToIndex);
     
     } else {
-      exp = itemToFind;
+      exp = itemToIndex;
     }
   }
   
@@ -25,7 +25,7 @@ const getItemIndex = function (inputArr, itemToFind, useRegex) {
       }
     
     } else {
-      if(item === itemToFind) {
+      if(item === itemToIndex) {
         itemIndex.push(inputArr.indexOf(item));
       }
     }
