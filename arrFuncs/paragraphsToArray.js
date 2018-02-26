@@ -1,4 +1,4 @@
-const storiesToArray = function (textInput) {
+const paragraphsToArray = function (textInput) {
   /* (str) -> arr of strings
 
   Returns an array of non-empty strings split at \n and
