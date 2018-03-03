@@ -1,4 +1,4 @@
-const generateArray = (minLength, maxLength) => {
+const generateArray = (minLength = 10, maxLength) => {
   /* (int[, int]) -> arr
   Returns an array of random numbers, with lengths:
   - If only minLength is specified, array will be specified length
@@ -7,7 +7,7 @@ const generateArray = (minLength, maxLength) => {
     random length between those values
   */
 
-  let arrLength = minLength || 10;
+  let arrLength = minLength;
 
   if(typeof maxLength !== "undefined") {
     arrLength = randomRange(minLength, maxLength);
