@@ -1,4 +1,4 @@
-const getItemIndex = function (inputArr, itemToIndex, useRegex) {
+const getItemIndex = function (inputArr, itemToIndex, useRegex = false) {
   /* (arr, str or regex obj[, bool]) -> arr of nums
 
   Looks through input array and logs the index number(s)
@@ -6,7 +6,6 @@ const getItemIndex = function (inputArr, itemToIndex, useRegex) {
   If useRegex is true, the function will treat itemToIndex as 
   an expression. useRegex is false by default.
   */
-  useRegex = useRegex || false;
   let exp;
 
   if(useRegex) {
