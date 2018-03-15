@@ -1,27 +1,58 @@
-const findDifference = (list1, list2) => {
-  /* (arr, arr) -> arr
-  Returns an array of items in list1 NOT in list2
+const findDifference = (arr1, arr2) => {
+  /* (arr, arr) -> arr of 2 arrs
+  Returns an array of:
+    1) array of items in arr1 NOT in arr2 
+    2) array of items in arr2 NOT in arr1
+  
+  An empty array returns null
+  Throws an error non-arrays are passed in
   */
 
-  let notMatched = list1.reduce((collection, item1) => {
-    if(!list2.includes(item1)) {
+  if (!Array.isArray(arr1) || !Array.isArray(arr2)) {
+    throw new Error("Please only pass in arrays")
+  }
+
+  let onlyInArr1 = arr1.reduce((collection, item1) => {
+    if(!arr2.includes(item1)) {
       collection.push(item1);
     }
     return collection;
   }, [])
-  return notMatched;
+
+  let onlyInArr2 = arr2.reduce((collection, item2) => {
+    if(!arr1.includes(item2)) {
+      collection.push(item2);
+    }
+    return collection;
+  }, [])
+
+  if(onlyInArr1.length < 1) {
+    onlyInArr1 = null
+  } else if(onlyInArr2.length < 1) {
+    onlyInArr2 = null
+  }
+
+  return [ onlyInArr1, onlyInArr2];
 };
 
-const findSame = (list1, list2) => {
+const findSame = (arr1, arr2) => {
   /* (arr, arr) -> arr
-  Returns an array of items in list1 ALSO in list2
+  Returns an array of items in arr1 ALSO in arr2
   */
 
-  let filtered = list1.reduce((collection, item1) => {
-    if(list2.includes(item1)) {
+  let filtered = arr1.reduce((collection, item1) => {
+    if(arr2.includes(item1)) {
       collection.push(item1);
     }
     return collection;
   }, [])
+
+  if(filtered.length < 1) {
+    filtered = null
+  }
+  
   return filtered;
 };
+
+module.exports.findDifference = findDifference
+module.exports.findSame = findSame
