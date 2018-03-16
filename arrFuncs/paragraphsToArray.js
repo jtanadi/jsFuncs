@@ -5,10 +5,12 @@ const paragraphsToArray = function (textInput) {
   stripped of empty before and after spaces.
 
   >>> storiesToArray("Hello\n How are you?\n\n Great!")
-  ["Hello", "How are you", "Great"]
+  ["Hello", "How are you?", "Great!"]
   */
 
   return textInput.split("\n")
           .filter(item => item)
           .map(item => item.trim());
 };
+
+module.exports = paragraphsToArray

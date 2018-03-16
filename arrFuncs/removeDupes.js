@@ -1,10 +1,10 @@
-const removeDupes = (list, checkCase) => {
-  /* (arr[, bool]) -> arr, arr
+const removeDupes = (list, matchCase = true) => {
+  /* (arr[, bool]) -> arr of arr, arr
   Returns an array of 2 arrays:
   - The first is the original list, with duplicated items removed;
   - The second is a list of duplicate items.
-  checkCase is an optional bool parameter, false by default
-  If checkCase is true, the checker is case-sensitive
+  matchCase is an optional bool parameter, true by default
+  If matchCase is true, the checker is case-sensitive
     (ie. "foo" !== "Foo")
   */
 
@@ -12,7 +12,9 @@ const removeDupes = (list, checkCase) => {
   let dupes = [];
 
   let clean = list.reduce((collection, listItem) => {
-    if(!checkCase && typeof listItem === "string") {
+    const listItemOrig = listItem
+
+    if(!matchCase && typeof listItem === "string") {
       listItem = listItem.toLowerCase();
     }
 
@@ -21,7 +23,7 @@ const removeDupes = (list, checkCase) => {
       collection.push(listItem);
     
     } else {
-      dupes.push(listItem);
+      dupes.push(listItemOrig);
     }
     
     return collection;
@@ -29,3 +31,5 @@ const removeDupes = (list, checkCase) => {
 
   return [clean, dupes];
 };
+
+module.exports = removeDupes

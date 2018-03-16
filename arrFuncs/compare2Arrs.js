@@ -25,13 +25,11 @@ const findDifference = (arr1, arr2) => {
     return collection;
   }, [])
 
-  if(onlyInArr1.length < 1) {
-    onlyInArr1 = null
-  } else if(onlyInArr2.length < 1) {
-    onlyInArr2 = null
-  }
+  if(onlyInArr1.length < 1) onlyInArr1 = null
+  
+  if(onlyInArr2.length < 1) onlyInArr2 = null
 
-  return [ onlyInArr1, onlyInArr2];
+  return [ onlyInArr1, onlyInArr2 ];
 };
 
 const findSame = (arr1, arr2) => {

@@ -14,3 +14,5 @@ const filterRegEx = function (inputArr, expression) {
     return exp.test(item);
   });
 }
+
+module.exports = filterRegEx
