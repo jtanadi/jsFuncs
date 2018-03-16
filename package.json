@@ -4,7 +4,8 @@
   "description": "Collection of small functions",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tape **/tests/*-test.js | faucet",
+    "watch": "tape-watch --clear **/tests/*-test.js | faucet"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/jtanadi/jsFuncs/issues"
   },
-  "homepage": "https://github.com/jtanadi/jsFuncs#readme"
+  "homepage": "https://github.com/jtanadi/jsFuncs#readme",
+  "devDependencies": {
+    "tape": "^4.9.0",
+    "tape-watch": "^2.3.0"
+  }
 }
