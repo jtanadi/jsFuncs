@@ -3,7 +3,6 @@ const findDifference = (arr1, arr2) => {
   Returns an array of:
     1) array of items in arr1 NOT in arr2 
     2) array of items in arr2 NOT in arr1
-  
   An empty array returns null
   Throws an error non-arrays are passed in
   */
@@ -37,21 +36,27 @@ const findDifference = (arr1, arr2) => {
 
 const findSame = (arr1, arr2) => {
   /* (arr, arr) -> arr
-  Returns an array of items in arr1 ALSO in arr2
+  Returns an array of items in arr1 AND in arr2
+  Returns null when the result array is empty
+  Throws an error non-arrays are passed in
   */
 
-  let filtered = arr1.reduce((collection, item1) => {
+  if(!Array.isArray(arr1) || !Array.isArray(arr2)) {
+    throw new Error("Please only pass in arrays")
+  }
+
+  let same = arr1.reduce((collection, item1) => {
     if(arr2.includes(item1)) {
       collection.push(item1);
     }
     return collection;
   }, [])
 
-  if(filtered.length < 1) {
-    filtered = null
+  if(same.length < 1) {
+    same = null
   }
   
-  return filtered;
+  return same;
 };
 
 module.exports.findDifference = findDifference
