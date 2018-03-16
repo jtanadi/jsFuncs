@@ -77,17 +77,33 @@ test("findSame returns an array", () => {
 })
 
 test("findSame returns elmts found in both arrs (base case)", () => {
-  const arr1 = [1, 2, 3, 4, 5]
+  const arr1 = [1, 2, 4, 5, 6]
   const arr2 = [5, 6, 7, 8, 9]
   
   expect(findSame(arr1, arr2))
-    .toEqual([5])
+    .toEqual([5, 6])
 })
 
-test("findSame returns null when nothing is found", () => {
+test("findSame returns null when nothing is found (arrs with different values)", () => {
   const arr1 = [1, 2, 3, 4, 5]
+  const arr2 = ["a", "b", "c"]
+  
+  expect(findSame(arr1, arr2))
+    .toEqual(null)
+})
+
+test("findSame returns null when nothing is found (2 empty arrs)", () => {
+  const arr1 = []
   const arr2 = []
   
   expect(findSame(arr1, arr2))
     .toEqual(null)
+})
+
+test("findSame throws an error when non-arrays are passed in)", () => {
+  const arr1 = "hello"
+  const arr2 = [1, 2, 3]
+  
+  expect(() => findSame(arr1, arr2))
+    .toThrow()
 })
