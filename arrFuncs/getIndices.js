@@ -1,35 +1,21 @@
-const getIndices = function (inputArr, itemToIndex, useRegex = false) {
-  /* (arr, str || num || regex obj[, bool]) -> arr of nums
+const getIndices = function (inputArr, itemToIndex) {
+  /* (arr, str || num || regex obj) -> arr of nums
   Like Array.prototype.indexOf(), but returns all
   indices instead of first index
 
   Looks through input array and logs the index number(s)
-  of itemToIndex. 
-  
-  If useRegex is true, the function will treat itemToIndex as 
-  an expression. useRegex is false by default.
+  of itemToIndex. Returns [-1] if inputArr doesn't contain itemToIndex
   */
 
   if(!Array.isArray(inputArr)) throw new Error("First argument must be an array")
+  
+  let exp = new RegExp(itemToIndex)
 
-  let exp;
-  if(useRegex) {
-    if(typeof itemToIndex === "string" || typeof itemToIndex === "number") {
-      exp = new RegExp(itemToIndex);
-    
-    } else {
-      exp = itemToIndex;
-    }
-  }
+  // Early exit when item isn't in array
+  if(!inputArr.find(item => exp.test(item))) return [-1]
   
   return inputArr.reduce((returnIndices, item, index) => {
-    if(useRegex) {
-      if(exp.test(item)) returnIndices.push(index);
-    
-    } else {
-      if(item === itemToIndex) returnIndices.push(index);
-    }
-
+    if(exp.test(item)) returnIndices.push(index);
     return returnIndices;
   }, []);
 }
