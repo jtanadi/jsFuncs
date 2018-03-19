@@ -1,8 +1,11 @@
-const getItemIndex = function (inputArr, itemToIndex, useRegex = false) {
+const getIndices = function (inputArr, itemToIndex, useRegex = false) {
   /* (arr, str || num || regex obj[, bool]) -> arr of nums
+  Like Array.prototype.indexOf(), but returns all
+  indices instead of first index
 
   Looks through input array and logs the index number(s)
   of itemToIndex. 
+  
   If useRegex is true, the function will treat itemToIndex as 
   an expression. useRegex is false by default.
   */
@@ -31,4 +34,4 @@ const getItemIndex = function (inputArr, itemToIndex, useRegex = false) {
   }, []);
 }
 
-module.exports = getItemIndex
+module.exports = getIndices
