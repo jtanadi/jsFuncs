@@ -1,5 +1,5 @@
 const removeDupes = (list, matchCase = true) => {
-  /* (arr[, bool]) -> arr of arr, arr
+  /* (arr[, bool]) -> [arr, arr]
   Returns an array of 2 arrays:
   - The first is the original list, with duplicated items removed;
   - The second is a list of duplicate items.
@@ -12,6 +12,8 @@ const removeDupes = (list, matchCase = true) => {
   let dupes = [];
 
   let clean = list.reduce((collection, listItem) => {
+    // Make a copy of the item because
+    // it's sometimes transformed
     const listItemOrig = listItem
 
     if(!matchCase && typeof listItem === "string") {
@@ -20,7 +22,7 @@ const removeDupes = (list, matchCase = true) => {
 
     if(!seen.includes(listItem)) {
       seen.push(listItem);
-      collection.push(listItem);
+      collection.push(listItemOrig);
     
     } else {
       dupes.push(listItemOrig);
