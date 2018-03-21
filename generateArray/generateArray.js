@@ -1,4 +1,4 @@
-const randomRange = require('../randomRange/randomRange')
+const randomRange = require("../randomRange/randomRange");
 
 const generateArray = (minLength, maxLength) => {
   /* (int[, int]) -> arr
@@ -15,7 +15,7 @@ const generateArray = (minLength, maxLength) => {
     arrLength = randomRange(minLength, maxLength);
   }
 
-  let retArray = [];
+  const retArray = [];
   for(let i = 0; i < arrLength; i++) {
     retArray.push(Math.round(Math.random() * 100));
   }
@@ -23,4 +23,5 @@ const generateArray = (minLength, maxLength) => {
   return retArray;
 };
 
-module.exports = generateArray
+module.exports = generateArray;
+
