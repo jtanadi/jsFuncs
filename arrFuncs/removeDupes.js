@@ -8,30 +8,29 @@ const removeDupes = (list, matchCase = true) => {
     (ie. "foo" !== "Foo")
   */
 
-  let seen = [];
-  let dupes = [];
+  const seen = [];
+  const dupes = [];
 
-  let clean = list.reduce((collection, listItem) => {
-    // Make a copy of the item because
-    // it's sometimes transformed
-    const listItemOrig = listItem
+  const clean = list.reduce((collection, listItem) => {
+    // Make a copy of the item to transform it
+    let listItemCopy = listItem;
 
-    if(!matchCase && typeof listItem === "string") {
-      listItem = listItem.toLowerCase();
+    if(!matchCase && typeof listItemCopy === "string") {
+      listItemCopy = listItemCopy.toLowerCase();
     }
 
-    if(!seen.includes(listItem)) {
-      seen.push(listItem);
-      collection.push(listItemOrig);
-    
+    if(!seen.includes(listItemCopy)) {
+      seen.push(listItemCopy);
+      collection.push(listItem);
     } else {
-      dupes.push(listItemOrig);
+      dupes.push(listItem);
     }
     
     return collection;
-  }, [])
+  }, []);
 
   return [clean, dupes];
 };
 
-module.exports = removeDupes
+module.exports = removeDupes;
+

@@ -9,8 +9,9 @@ const paragraphsToArray = function (textInput) {
   */
 
   return textInput.split("\n")
-          .filter(item => item)
-          .map(item => item.trim());
+    .filter(item => item)
+    .map(item => item.trim());
 };
 
-module.exports = paragraphsToArray
+module.exports = paragraphsToArray;
+

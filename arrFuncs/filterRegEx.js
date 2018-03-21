@@ -4,7 +4,7 @@ const filterRegEx = function (inputArr, expression) {
   Returns an array filtered with the passed-in RegEx.
   */
   let exp;
-  if(typeof expression === 'string') {
+  if(typeof expression === "string") {
     exp = new RegExp(expression);
   } else {
     exp = expression;
