@@ -4,15 +4,13 @@ const filterRegEx = function (inputArr, expression) {
   Returns an array filtered with the passed-in RegEx.
   */
   let exp;
-  if(typeof expression === "string") {
+  if(typeof expression === 'string') {
     exp = new RegExp(expression);
   } else {
     exp = expression;
   }
 
-  return inputArr.filter(item => {
-    return exp.test(item);
-  });
-}
+  return inputArr.filter(item => exp.test(item));
+};
 
-module.exports = filterRegEx
+module.exports = filterRegEx;
