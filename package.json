@@ -21,7 +21,5 @@
     "tape": "^4.9.0",
     "tape-watch": "^2.3.0"
   },
-  "dependencies": {
-    "npm": "^5.7.1"
-  }
+  "dependencies": {}
 }
