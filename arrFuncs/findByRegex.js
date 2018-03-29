@@ -1,7 +1,7 @@
 const findByRegex = function (inputArr, expression) {
   /* (arr, str or regex obj) -> arr of strings
 
-  Returns an array filtered with the passed-in RegEx.
+  Returns an array of terms that match passed-in RegEx.
   */
   let exp;
   if(typeof expression === "string") {
