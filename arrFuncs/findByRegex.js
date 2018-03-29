@@ -1,4 +1,4 @@
-const filterRegEx = function (inputArr, expression) {
+const findByRegex = function (inputArr, expression) {
   /* (arr, str or regex obj) -> arr of strings
 
   Returns an array filtered with the passed-in RegEx.
@@ -13,4 +13,4 @@ const filterRegEx = function (inputArr, expression) {
   return inputArr.filter(item => exp.test(item));
 };
 
-module.exports = filterRegEx;
+module.exports = findByRegex;
