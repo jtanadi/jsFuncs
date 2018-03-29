@@ -1,4 +1,4 @@
-const paragraphsToArray = function (textInput) {
+const paragraphsToArray = function (textInput, trimmed = true) {
   /* (str) -> arr of strings
 
   Returns an array of non-empty strings split at \n and
@@ -8,9 +8,14 @@ const paragraphsToArray = function (textInput) {
   ["Hello", "How are you?", "Great!"]
   */
 
-  return textInput.split("\n")
+  const retArr = textInput.split("\n")
     .filter(item => item)
-    .map(item => item.trim());
+
+  if(!trimmed) {
+    return retArr;
+  }
+
+  return retArr.map(item => item.trim());
 };
 
 module.exports = paragraphsToArray;

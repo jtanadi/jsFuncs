@@ -33,7 +33,7 @@ test("accepts empty array & returns empty array", t => {
   t.end();
 });
 
-test.only("something longer", t => {
+test("something longer", t => {
   const arr = ["1.0_pt01", "BECOMING TEXAS", "Our understanding of Texas history is always chang…egins long before it was named and drawn on maps.", "Objects and stories from our past help us understa…s and historians continually add to what we know.", "AC_01", "1.0_la01", "Discovered in central Texas, this stone point with a broken tip was made at least 14,000 years ago.", "For many years scientists believed that the first Americans came from Asia 13,000 years ago.  This discovery suggests that humans came to the Americas much earlier.", "(TK- Credit Line)", "2.0", "2.0_pt01", "An Ancient History", "What we now call Texas was home to many different peoples for thousands of years.", "More than 3000 years ago farmers settled where the Río Grande and Río Conchos join. More than 1000 years ago the Caddo people built a village 26 miles west of present-day Nacogdoches."]
   const regex = "1\\.0"
 

@@ -53,3 +53,10 @@ test("long strings passed in", (t) => {
   t.end()
 })
 
+test("untrimmed lines", t => {
+  const actual = para("2.0\t\t\n3.0\t\t\n4.0", false)
+  const expected = ["2.0\t\t", "3.0\t\t", "4.0"]
+
+  t.deepEqual(actual, expected);
+  t.end();
+})
