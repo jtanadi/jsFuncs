@@ -9,18 +9,22 @@ const splitHtmlTags = taggedStr => {
         inTag = true;
         if(nonTag) returnArray.push(nonTag);
         nonTag = "";
-      
+        
       } else if (inTag && letter === ">") {
         inTag = false;
-        returnArray.push(tag + ">");
+        if(tag) returnArray.push(tag + ">");
         tag = "";
-        return returnArray
+        // return returnArray 
       }
       
       if(inTag) {
         tag+= letter
       } else {
         nonTag += letter;
+      }
+
+      if(!inTag && index === taggedStr.length - 1) {
+        if(nonTag) returnArray.push(nonTag);
       }
         
       return returnArray;
