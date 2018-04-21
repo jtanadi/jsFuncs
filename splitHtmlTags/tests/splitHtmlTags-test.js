@@ -55,3 +55,27 @@ test("quotes inside of tags", t => {
   t.deepEqual(actual, expected);
   t.end();
 });
+
+test("edge case 1", t => {
+  const actual = splitHtmlTags("< abcdef><tag>hey</a>");
+  const expected = ["< abcdef>", "<tag>", "hey", "</a>"];
+
+  t.deepEqual(actual, expected);
+  t.end();
+});
+
+test("edge case 2", t => {
+  const actual = splitHtmlTags("this < that>");
+  const expected = ["this < that>"];
+  
+  t.deepEqual(actual, expected);
+  t.end();
+});
+
+test("edge case 3", t => {
+  const actual = splitHtmlTags("this> that<this >");
+  const expected = ["this> that<this >"];
+
+  t.deepEqual(actual, expected);
+  t.end();
+});
