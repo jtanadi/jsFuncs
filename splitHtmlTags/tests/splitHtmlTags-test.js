@@ -7,7 +7,7 @@ test("base case", t => {
   
   t.deepEqual(expected, actual);
   t.end();
-})
+});
 
 test("tagged in the middle of a sentence", t => {
   const expected = ["First part here ", "<tag>", "Tagged text here", "</tag>"];
@@ -15,7 +15,7 @@ test("tagged in the middle of a sentence", t => {
 
   t.deepEqual(expected, actual);
   t.end();
-})
+});
 
 test("multiple tags per sentence", t => {
   const expected = [
@@ -23,15 +23,15 @@ test("multiple tags per sentence", t => {
     "<tag1>",
     "Inside of tag 1",
     "</tag1>",
-    " Non tagged text "
-    ,"<tag2>",
+    " Non tagged text ",
+    "<tag2>",
     "Inside of tag 2",
     "</tag2>",
-    " End of line"
+    " End of line",
   ];
   
-  const actual = splitHtmlTags("Start here <tag1>Inside of tag 1</tag> Non tagged text <tag2>Inside of tag 2</tag2> End of line");
+  const actual = splitHtmlTags("Start here <tag1>Inside of tag 1</tag1> Non tagged text <tag2>Inside of tag 2</tag2> End of line");
 
   t.deepEqual(expected, actual);
   t.end();
-})
+});

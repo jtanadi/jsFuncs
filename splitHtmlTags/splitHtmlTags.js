@@ -1,37 +1,39 @@
 const splitHtmlTags = taggedStr => {
   let inTag;
-  let tag = "";
-  let nonTag = "";
+  let word = "";
+
+  const startTag = (str, index) => {
+    return str[index] === "<" && str[index + 1] !== " ";
+  };
+
+  const endTag = (str, index) => {
+    return inTag && str[index] === ">";
+  };
 
   return taggedStr.split("")
     .reduce((returnArray, letter, index) => {
-      if(letter === "<" && taggedStr[index + 1] !== " ") {
+      if(startTag(taggedStr, index)) {
         inTag = true;
-        if(nonTag) returnArray.push(nonTag);
-        nonTag = "";
-        
-      } else if (inTag && letter === ">") {
+        if(word) returnArray.push(word);
+        word = "";
+      } else if(endTag(taggedStr, index)) {
         inTag = false;
-        if(tag) returnArray.push(tag + ">");
-        tag = "";
-        // return returnArray 
-      }
-      
-      if(inTag) {
-        tag+= letter
-      } else {
-        nonTag += letter;
+        returnArray.push(`${word}>`);
+        word = "";
+
+        // Return at the end of tag (at ">")
+        // so ">" doesn't get added to the next word.
+        return returnArray;
       }
 
-      if(!inTag && index === taggedStr.length - 1) {
-        if(nonTag) returnArray.push(nonTag);
+      word += letter;
+
+      if(index === taggedStr.length - 1) {
+        if(word) returnArray.push(word);
       }
         
       return returnArray;
-    }, [])
-}
+    }, []);
+};
 
-console.log(splitHtmlTags("hey <tag>beep</tag> bop"))
-console.log(splitHtmlTags("<tag1>hey</tag1> bl< >op <tag>beep</tag> bop boop"))
-
-// module.exports = splitHtmlTags;
+module.exports = splitHtmlTags;
