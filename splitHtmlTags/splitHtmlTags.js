@@ -3,15 +3,22 @@ const splitHtmlTags = taggedStr => {
   let word = "";
 
   const startTag = (str, index) => {
+    // If the next letter IS a space, then it's not a tag
+    // (it's a "greater than" sign...)
     return str[index] === "<" && str[index + 1] !== " ";
   };
 
   const endTag = (str, index) => {
+    // If NOT inTag, then ">" is a "smaller than" sign
     return inTag && str[index] === ">";
   };
 
   return taggedStr.split("")
     .reduce((returnArray, letter, index) => {
+      // The conditional follows the same pattern:
+      // - switch inTag flag
+      // - push word to returnArray
+      // - Reset word
       if(startTag(taggedStr, index)) {
         inTag = true;
         if(word) returnArray.push(word);
@@ -21,8 +28,8 @@ const splitHtmlTags = taggedStr => {
         returnArray.push(`${word}>`);
         word = "";
 
-        // Return at the end of tag (at ">")
-        // so ">" doesn't get added to the next word.
+        // Return returnArray at ">" so the character
+        // isn't added to the start of a word
         return returnArray;
       }
 
