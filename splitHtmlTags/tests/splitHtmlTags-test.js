@@ -35,3 +35,23 @@ test("multiple tags per sentence", t => {
   t.deepEqual(expected, actual);
   t.end();
 });
+
+test("tags inside of tags", t => {
+  const actual = splitHtmlTags("<a><b><c>Text in here</c></b></a>");
+  const expected = ["<a>", "<b>", "<c>", "Text in here", "</c>", "</b>", "</a>"];
+
+  t.deepEqual(actual, expected);
+  t.end();
+});
+
+test("quotes inside of tags", t => {
+  const actual = splitHtmlTags("<a href=\"http://google.com\" target=\"_blank\">Link here</a>");
+  const expected = [
+    "<a href=\"http://google.com\" target=\"_blank\">",
+    "Link here",
+    "</a>",
+  ];
+
+  t.deepEqual(actual, expected);
+  t.end();
+});
