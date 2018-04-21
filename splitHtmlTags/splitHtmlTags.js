@@ -19,11 +19,7 @@ const splitHtmlTags = taggedStr => {
       // - switch inTag flag
       // - push word to returnArray
       // - Reset word
-      if(startTag(taggedStr, index)) {
-        inTag = true;
-        if(word) returnArray.push(word);
-        word = "";
-      } else if(endTag(taggedStr, index)) {
+      if(endTag(taggedStr, index)) {
         inTag = false;
         returnArray.push(`${word}>`);
         word = "";
@@ -31,8 +27,12 @@ const splitHtmlTags = taggedStr => {
         // Return returnArray at ">" so the character
         // isn't added to the start of a word
         return returnArray;
+      } else if(startTag(taggedStr, index)) {
+        inTag = true;
+        if(word) returnArray.push(word);
+        word = "";
       }
-      
+
       word += letter;
       if(index === taggedStr.length - 1) returnArray.push(word);
         
