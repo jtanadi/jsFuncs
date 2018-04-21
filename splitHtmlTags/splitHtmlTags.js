@@ -1,23 +1,22 @@
 const splitHtmlTags = taggedStr => {
   let inTag;
+  let inQuote = false;
   let word = "";
 
-  const startTag = (str, index) => {
-    // Early exit: if letter isn't "<" OR
-    // if the following letter is " " (then "<" is "smaller than")
-    if(str[index] !== "<" || str[index + 1] === " ") return false;
-
-    // If there's a space before the closing bracket,
-    // then it's not a tag ("<tag >" isn't a tag)
-    for(let i = index; i < str.length; i++) {
-      if(str[i] === ">" && str[i - 1] === " ") return false;
-    }
-    return true;
+  const checkQuote = char => {
+    if(inTag && (char === "\"" || char === "'")) inQuote = !inQuote;
   };
 
-  const endTag = (str, index) => {
+  const startTag = (str, index) => {
+    // "<" followed by a " " is a "less than" sign
+    return str[index] === "<" && str[index + 1] !== " ";
+  };
+
+  const endTag = str => {
+    // Ignore ">" character if it's surrounded by quotes
     // If NOT inTag, then ">" is a "greater than" sign
-    return inTag && str[index] === ">";
+    checkQuote(str);
+    return !inQuote && inTag && str === ">";
   };
 
   return taggedStr.split("")
@@ -26,7 +25,7 @@ const splitHtmlTags = taggedStr => {
       // - switch inTag flag
       // - push word to returnArray
       // - Reset word
-      if(endTag(taggedStr, index)) {
+      if(endTag(letter)) {
         inTag = false;
         returnArray.push(`${word}>`);
         word = "";

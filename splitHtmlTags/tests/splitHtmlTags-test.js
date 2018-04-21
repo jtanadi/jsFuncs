@@ -56,7 +56,7 @@ test("quotes inside of tags", t => {
   t.end();
 });
 
-test("edge case 1", t => {
+test("edge case 1: space after opening bracket", t => {
   const actual = splitHtmlTags("< abcdef><tag>hey</a>");
   const expected = ["< abcdef>", "<tag>", "hey", "</a>"];
 
@@ -64,7 +64,7 @@ test("edge case 1", t => {
   t.end();
 });
 
-test("edge case 2", t => {
+test("edge case 2: space before & after opening bracket", t => {
   const actual = splitHtmlTags("this < that>");
   const expected = ["this < that>"];
   
@@ -72,9 +72,49 @@ test("edge case 2", t => {
   t.end();
 });
 
-test("edge case 3", t => {
-  const actual = splitHtmlTags("this> that<this >");
-  const expected = ["this> that<this >"];
+test("edge case 3: space before closing bracket", t => {
+  const actual = splitHtmlTags("that<this >");
+  const expected = ["that", "<this >"];
+
+  t.deepEqual(actual, expected);
+  t.end();
+});
+
+test("edge case 4: false tag - no opening bracket", t => {
+  const actual = splitHtmlTags("false>hello</false>");
+  const expected = ["false>hello", "</false>"];
+
+  t.deepEqual(actual, expected);
+  t.end();
+});
+
+test("edge case 5: tag with space in the middle", t => {
+  const actual = splitHtmlTags("<tag hey>hello</tag>");
+  const expected = ["<tag hey>", "hello", "</tag>"];
+
+  t.deepEqual(actual, expected);
+  t.end();
+});
+
+test("edge case 6: tag has \">\" and/or \"<\"", t => {
+  const actual = splitHtmlTags("<tag class=\">\">hello</tag>");
+  const expected = ["<tag class=\">\">", "hello", "</tag>"];
+
+  t.deepEqual(actual, expected);
+  t.end();
+});
+
+test("edge case 7: tag has '>' or '<'", t => {
+  const actual = splitHtmlTags("<tag class='>'>hello</tag>");
+  const expected = ["<tag class='>'>", "hello", "</tag>"];
+
+  t.deepEqual(actual, expected);
+  t.end();
+});
+
+test("edge case 8: tags surrounded by quotes", t => {
+  const actual = splitHtmlTags("\"<div class=\">\">hello</div>\"");
+  const expected = ["\"", "<div class=\">\">", "hello", "</div>", "\""];
 
   t.deepEqual(actual, expected);
   t.end();
