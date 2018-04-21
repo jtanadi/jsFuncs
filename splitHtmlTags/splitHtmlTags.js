@@ -32,12 +32,9 @@ const splitHtmlTags = taggedStr => {
         // isn't added to the start of a word
         return returnArray;
       }
-
+      
       word += letter;
-
-      if(index === taggedStr.length - 1) {
-        if(word) returnArray.push(word);
-      }
+      if(index === taggedStr.length - 1) returnArray.push(word);
         
       return returnArray;
     }, []);
